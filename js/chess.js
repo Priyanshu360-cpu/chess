@@ -1,3 +1,4 @@
+
 function getMousePosition(canvas, event) {
   let rect = canvas.getBoundingClientRect();
   let x = event.clientX - rect.left;
@@ -12,6 +13,7 @@ function yparse(x,y){
    return parseInt(x/85)-1
   }
 function draw() {
+  
   const clicked = document.getElementById("clicker")
     const canvas = document.getElementById('canvas');
     if (canvas.getContext) {
@@ -43,7 +45,7 @@ const white_pawnar=[];
             "xpos":320+(xparse(a.x,0)*85),
           "ypos":(yparse(a.y,0)*85)-85+50
           })
-
+        console.log(positions)
           ctx.strokeRect(320+(xparse(a.x,0)*85), 50+(yparse(a.y,0)*85), 85, 85);
           ctx.strokeRect(320+(xparse(a.x,0)*85), 475, 85, 85);
         }
@@ -139,5 +141,3 @@ black_king.addEventListener('load', function() {
 }, false);
     }
   }
- 
-  
