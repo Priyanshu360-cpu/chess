@@ -10,7 +10,7 @@ function xparse(x,y){
   else return xparse(x-85,y+1)
 }
 function yparse(x,y){
-   return parseInt(x/85)-1
+   return Math.round(x/85)-2
   }
 function draw() {
   
@@ -39,15 +39,17 @@ const white_pawnar=[];
             ctx.strokeRect(x.xpos, x.ypos, 85, 85);
           })
           ctx.strokeStyle = "#FF0000";
+         
+        for(let j=0;j<positions[`white_pawn${xparse(a.x,1)}`]["allowed"];j++){
+          ctx.strokeRect(320+(xparse(a.x,0)*85), 50+((yparse(a.y,0)+j)*85), 85, 85);
           white_pawnar.push({
             "xpos":320+(xparse(a.x,0)*85),
-          "ypos":560},{
+          "ypos":50+((yparse(a.y,0)+1)*85)},{
             "xpos":320+(xparse(a.x,0)*85),
-          "ypos":(yparse(a.y,0)*85)-85+50
+          "ypos":(yparse(a.y,0)*85)-((j)*85)+50
           })
-        console.log(positions)
-          ctx.strokeRect(320+(xparse(a.x,0)*85), 50+(yparse(a.y,0)*85), 85, 85);
-          ctx.strokeRect(320+(xparse(a.x,0)*85), 475, 85, 85);
+        }
+        ctx.strokeRect(320+(xparse(a.x,0)*85), ((yparse(a.y,0)-1)*85)+50, 85, 85);
         }
       }, false);
 
