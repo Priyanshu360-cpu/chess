@@ -43,11 +43,9 @@ const white_pawnar=[];
             "xpos":320+(xparse(a.x,0)*85),
           "ypos":(yparse(a.y,0)*85)-85+50
           })
+
           ctx.strokeRect(320+(xparse(a.x,0)*85), 50+(yparse(a.y,0)*85), 85, 85);
-          console.log(50+(yparse(a.y,0)))
           ctx.strokeRect(320+(xparse(a.x,0)*85), 475, 85, 85);
-
-
         }
       }, false);
 
