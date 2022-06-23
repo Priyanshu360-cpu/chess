@@ -33,12 +33,20 @@ let holdedmoves=[];
       canvas.addEventListener('click', function(e) { 
         let a = getMousePosition(canvas, e);
         console.log(a.x,a.y)
-
+let h=1;
         holdedmoves.map(x=>{
           if(a.x>=x.xpos&&a.x<=x.xpos+85&&a.y>=x.ypos&&a.y<=x.ypos+85){
             console.log("clicked")
+            console.log(x)
             clicked.innerHTML="move supported"
             holdedmoves=[]
+            h=0
+          }else if(h==1){
+            clicked.innerHTML="move not supported"
+            ctx.strokeStyle="#030303";
+            white_pawnar.map(x=>{
+              ctx.strokeRect(x.xpos, x.ypos, 85, 85);
+            })
           }
         })
 
@@ -61,7 +69,8 @@ let holdedmoves=[];
           })
           holdedmoves.push({
             "xpos":320+(xparse(a.x,0)*85),
-            "ypos":(yparse(a.y,0)*85)-((j)*85)+50
+            "ypos":(yparse(a.y,0)*85)-((j)*85)+50,
+            "type":`white_pawn${xparse(a.x,1)}`
           })
         }
       
