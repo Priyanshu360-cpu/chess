@@ -44,6 +44,10 @@ let h=1;
             const new_dice=new Image();
             new_dice.src=`./images/${x.type}.png`
             new_dice.addEventListener('load', function() {
+              ctx.strokeStyle="#030303";
+              white_pawnar.map(x=>{
+                ctx.strokeRect(x.xpos, x.ypos, 85, 85);
+              })
               ctx.drawImage(new_dice,x.xpos+20,x.ypos+20,50,38);
               ctx.clearRect(320+(positions[`${x.type}${x.number}`]["position"]["x"]*85),50+(positions[`${x.type}${x.number}`]["position"]["y"]*85),85,85)
               ctx.fillStyle=(((positions[`${x.type}${x.number}`]["position"]["x"])+(positions[`${x.type}${x.number}`]["position"]["y"]))%2==0)?"white":"black"
