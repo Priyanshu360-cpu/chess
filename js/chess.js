@@ -48,6 +48,11 @@ let h=1;
               ctx.clearRect(320+(positions[`${x.type}${x.number}`]["position"]["x"]*85),50+(positions[`${x.type}${x.number}`]["position"]["y"]*85),85,85)
               ctx.fillStyle=(((positions[`${x.type}${x.number}`]["position"]["x"])+(positions[`${x.type}${x.number}`]["position"]["y"]))%2==0)?"white":"black"
               ctx.fillRect(320+(positions[`${x.type}${x.number}`]["position"]["x"]*85),50+(positions[`${x.type}${x.number}`]["position"]["y"]*85),85,85)
+              //let rotateAngle = 180;
+              //let image=document.getElementById("rotater");
+              //image.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
+              //rotateAngle = rotateAngle + 90;
+              //to be implemented on completion of the project
             })
             h=0
           }else if(h==1){
