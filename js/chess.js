@@ -25,12 +25,23 @@ function draw() {
       }}
 
       ctx.strokeRect(320, 50, 680, 680);
+      ctx.strokeRect(320, 50, 680, 680);
+      ctx.strokeRect(320, 50, 680, 680);
 
 const white_pawnar=[];
-
+let holdedmoves=[];
       canvas.addEventListener('click', function(e) { 
         let a = getMousePosition(canvas, e);
-        console.log(a.y,a.x)
+        console.log(a.x,a.y)
+
+        holdedmoves.map(x=>{
+          if(a.x>=x.xpos&&a.x<=x.xpos+85&&a.y>=x.ypos&&a.y<=x.ypos+85){
+            console.log("clicked")
+            clicked.innerHTML="move supported"
+            holdedmoves=[]
+          }
+        })
+
         if(a.x>=320&&a.y<=632&&a.y>=560){
           console.log(`${xparse(a.x,1)} White pawn clicked`)
           clicked.innerHTML=`${xparse(a.x,1)} White pawn`
@@ -38,8 +49,8 @@ const white_pawnar=[];
           white_pawnar.map(x=>{
             ctx.strokeRect(x.xpos, x.ypos, 85, 85);
           })
+
           ctx.strokeStyle = "#FF0000";
-         
         for(let j=0;j<positions[`white_pawn${xparse(a.x,1)}`]["allowed"];j++){
           ctx.strokeRect(320+(xparse(a.x,0)*85), 50+((yparse(a.y,0)+j)*85), 85, 85);
           white_pawnar.push({
@@ -48,7 +59,12 @@ const white_pawnar=[];
             "xpos":320+(xparse(a.x,0)*85),
           "ypos":(yparse(a.y,0)*85)-((j)*85)+50
           })
+          holdedmoves.push({
+            "xpos":320+(xparse(a.x,0)*85),
+            "ypos":(yparse(a.y,0)*85)-((j)*85)+50
+          })
         }
+      
         ctx.strokeRect(320+(xparse(a.x,0)*85), ((yparse(a.y,0)-1)*85)+50, 85, 85);
         }
       }, false);
