@@ -9,7 +9,7 @@ function xparse(x,y){
   else return xparse(x-85,y+1)
 }
 function yparse(x,y){
-   return Math.trunc(x/85)-1
+   return parseInt(x/85)-1
   }
 function draw() {
   const clicked = document.getElementById("clicker")
