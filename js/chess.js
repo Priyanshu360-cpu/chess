@@ -1,4 +1,11 @@
+function getMousePosition(canvas, event) {
+  let rect = canvas.getBoundingClientRect();
+  let x = event.clientX - rect.left;
+  let y = event.clientY - rect.top;
+  return{"x":x,"y":y};
+}
 function draw() {
+  const clicked = document.getElementById("clicker")
     const canvas = document.getElementById('canvas');
     if (canvas.getContext) {
       const ctx = canvas.getContext('2d');
@@ -19,7 +26,14 @@ white_pawn.addEventListener('load', function() {
   }
   
 }, false);
-
+canvas.addEventListener('click', function(e) { 
+  let a = getMousePosition(canvas, e);
+  console.log(a.y,a.x)
+  if(a.x<=400&&a.y<=632&&a.y>=560){
+    console.log("first whte pawn clicked")
+    clicked.innerHTML="First White Pawn"
+  }
+}, false);
 movement=0;
 white_pawn.src = './images/white_pawn.png'; 
 const black_pawn = new Image();  
@@ -28,7 +42,7 @@ black_pawn.addEventListener('load', function() {
   for(let j=1;j<=8;j++){
   ctx.drawImage(black_pawn, movement+330, 165, 50, 38);
   movement=movement+85;
-  console.log(movement)
+
   }
 }, false);
 
@@ -38,6 +52,8 @@ white_elephant.addEventListener('load', function() {
   ctx.drawImage(white_elephant, 330, 680, 50, 38);
   ctx.drawImage(white_elephant, 85*11, 680, 50, 38);
 }, false);
+
+
 
 const black_elephant=new Image();
 black_elephant.src='./images/black_elephant.png';
@@ -99,5 +115,5 @@ black_king.addEventListener('load', function() {
 }, false);
     }
   }
-  
+ 
   
