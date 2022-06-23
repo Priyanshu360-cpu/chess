@@ -40,6 +40,7 @@ let h=1;
             console.log(x)
             clicked.innerHTML="move supported"
             holdedmoves=[]
+            positions[`${x.type}${x.number}`]["allowed"]=1;
             const new_dice=new Image();
             new_dice.src=`./images/${x.type}.png`
             new_dice.addEventListener('load', function() {
