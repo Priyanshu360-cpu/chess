@@ -8,6 +8,9 @@ function xparse(x,y){
   if(x-85<=320) return y;
   else return xparse(x-85,y+1)
 }
+function yparse(x,y){
+   return Math.trunc(x/85)-1
+  }
 function draw() {
   const clicked = document.getElementById("clicker")
     const canvas = document.getElementById('canvas');
@@ -21,13 +24,30 @@ function draw() {
 
       ctx.strokeRect(320, 50, 680, 680);
 
+const white_pawnar=[];
+
       canvas.addEventListener('click', function(e) { 
         let a = getMousePosition(canvas, e);
         console.log(a.y,a.x)
         if(a.x>=320&&a.y<=632&&a.y>=560){
-
           console.log(`${xparse(a.x,1)} White pawn clicked`)
           clicked.innerHTML=`${xparse(a.x,1)} White pawn`
+         ctx.strokeStyle="#030303";
+          white_pawnar.map(x=>{
+            ctx.strokeRect(x.xpos, x.ypos, 85, 85);
+          })
+          ctx.strokeStyle = "#FF0000";
+          white_pawnar.push({
+            "xpos":320+(xparse(a.x,0)*85),
+          "ypos":560},{
+            "xpos":320+(xparse(a.x,0)*85),
+          "ypos":(yparse(a.y,0)*85)-85+50
+          })
+          ctx.strokeRect(320+(xparse(a.x,0)*85), 50+(yparse(a.y,0)*85), 85, 85);
+          console.log(50+(yparse(a.y,0)))
+          ctx.strokeRect(320+(xparse(a.x,0)*85), 475, 85, 85);
+
+
         }
       }, false);
 
