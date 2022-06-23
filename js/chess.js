@@ -4,6 +4,10 @@ function getMousePosition(canvas, event) {
   let y = event.clientY - rect.top;
   return{"x":x,"y":y};
 }
+function xparse(x,y){
+  if(x-85<=320) return y;
+  else return xparse(x-85,y+1)
+}
 function draw() {
   const clicked = document.getElementById("clicker")
     const canvas = document.getElementById('canvas');
@@ -17,6 +21,16 @@ function draw() {
 
       ctx.strokeRect(320, 50, 680, 680);
 
+      canvas.addEventListener('click', function(e) { 
+        let a = getMousePosition(canvas, e);
+        console.log(a.y,a.x)
+        if(a.x>=320&&a.y<=632&&a.y>=560){
+
+          console.log(`${xparse(a.x,1)} White pawn clicked`)
+          clicked.innerHTML=`${xparse(a.x,1)} White pawn`
+        }
+      }, false);
+
 const white_pawn = new Image();  
 white_pawn.addEventListener('load', function() {
   let movement=0;
@@ -26,14 +40,7 @@ white_pawn.addEventListener('load', function() {
   }
   
 }, false);
-canvas.addEventListener('click', function(e) { 
-  let a = getMousePosition(canvas, e);
-  console.log(a.y,a.x)
-  if(a.x<=400&&a.y<=632&&a.y>=560){
-    console.log("first whte pawn clicked")
-    clicked.innerHTML="First White Pawn"
-  }
-}, false);
+
 movement=0;
 white_pawn.src = './images/white_pawn.png'; 
 const black_pawn = new Image();  
@@ -42,7 +49,6 @@ black_pawn.addEventListener('load', function() {
   for(let j=1;j<=8;j++){
   ctx.drawImage(black_pawn, movement+330, 165, 50, 38);
   movement=movement+85;
-
   }
 }, false);
 
