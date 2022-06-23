@@ -40,6 +40,14 @@ let h=1;
             console.log(x)
             clicked.innerHTML="move supported"
             holdedmoves=[]
+            const new_dice=new Image();
+            new_dice.src=`./images/${x.type}.png`
+            new_dice.addEventListener('load', function() {
+              ctx.drawImage(new_dice,x.xpos+20,x.ypos+20,50,38);
+              ctx.clearRect(320+(positions[`${x.type}${x.number}`]["position"]["x"]*85),50+(positions[`${x.type}${x.number}`]["position"]["y"]*85),85,85)
+              ctx.fillStyle=(((positions[`${x.type}${x.number}`]["position"]["x"])+(positions[`${x.type}${x.number}`]["position"]["y"]))%2==0)?"white":"black"
+              ctx.fillRect(320+(positions[`${x.type}${x.number}`]["position"]["x"]*85),50+(positions[`${x.type}${x.number}`]["position"]["y"]*85),85,85)
+            })
             h=0
           }else if(h==1){
             clicked.innerHTML="move not supported"
@@ -70,7 +78,8 @@ let h=1;
           holdedmoves.push({
             "xpos":320+(xparse(a.x,0)*85),
             "ypos":(yparse(a.y,0)*85)-((j)*85)+50,
-            "type":`white_pawn${xparse(a.x,1)}`
+            "type":`white_pawn`,
+            "number":xparse(a.x,1)
           })
         }
       
